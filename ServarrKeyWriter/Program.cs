@@ -29,7 +29,7 @@ secretWatcher.Start(apiKey => {
 
     if (success && oldApiKey != null && restart) {
         Console.WriteLine("Restarting application");
-        arrApi.Restart(oldApiKey);
+        arrApi.Shutdown(oldApiKey);
     }
 
     return success;

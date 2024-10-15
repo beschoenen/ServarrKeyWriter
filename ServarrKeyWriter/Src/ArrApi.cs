@@ -6,10 +6,10 @@ public class ArrApi
 
     private readonly HttpClient _client = new();
 
-    public async Task Restart(string apiKey)
+    public async Task Shutdown(string apiKey)
     {
         try {
-            await _client.PostAsync($"{ArrHost}/api/v3/system/restart?apiKey={apiKey}", null);
+            await _client.PostAsync($"{ArrHost}/api/v3/system/shutdown?apiKey={apiKey}", null);
         } catch (HttpRequestException e) {
             Console.WriteLine(e);
         }
