@@ -21,9 +21,7 @@ public class ArrConfig
         try {
             document.Load(ConfigPath);
 
-            var apiKey = document.SelectSingleNode("/Config/ApiKey");
-
-            return apiKey?.InnerText;
+            return document.SelectSingleNode("/Config/ApiKey")?.InnerText;
         }
         catch (XmlException) {
             Console.WriteLine("Invalid xml");
@@ -35,7 +33,7 @@ public class ArrConfig
     public bool WriteApiKey(string apiKey)
     {
         if (!File.Exists(ConfigPath)) {
-            Console.WriteLine("Config file not found at {ConfigPath}");
+            Console.WriteLine($"Config file not found at {ConfigPath}");
             return false;
         }
 
@@ -54,9 +52,8 @@ public class ArrConfig
 
             document.Save(ConfigPath);
         }
-        catch (XmlException e) {
-            Console.WriteLine(e.Message);
-
+        catch (Exception e) {
+            Console.WriteLine(e);
             return false;
         }
 
